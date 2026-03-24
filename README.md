@@ -78,10 +78,4 @@ Syntax check:
 python -m compileall -q .
 ```
 
-## Git: commit + push
-
-```bash
-git status
-git add <files>
-git commit -m "<message>"
 
