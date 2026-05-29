@@ -1,66 +1,49 @@
-# Library Management (PyQt + SQLite)
+# Library Management System
 
-Desktop library management app with a modern PyQt6 UI and a SQLite database.
-
-## Screenshots
-
-![Books tab](img/Screenshot%202026-03-05%20161344.png)
-
-![Users tab](img/Screenshot%202026-03-05%20161401.png)
-
-![Loans tab](img/Screenshot%202026-03-05%20161415.png)
-
-![Tools tab](img/Screenshot%202026-03-05%20161423.png)
+Desktop library management application with PyQt6 GUI and SQLite database. Manages books, users, and loan operations.
 
 ## Features
 
-- Books: add/edit/delete, search, status (available/checked out)
-- Users: add/edit/delete, search
-- Loans: checkout/return, due date, filter open/all and by user
-- Tools: export/import CSV (books/users), backup/restore database
+- **Books:** Add/edit/delete, search by title/author/isbn, availability status
+- **Users:** Add/edit/delete, search
+- **Loans:** Checkout with due dates (default 14 days), return tracking, filter by open/all/user
+- **Tools:** CSV import/export for books and users, database backup/restore
+- Seed data with 5 classic books on first run
+- ISBN uniqueness enforcement, prevents deletion of checked-out books
 
-## Quick Start
+## Tech Stack
 
-Prerequisites:
+- Python 3.10+, PyQt6, SQLite
 
-- Python 3.10+ (tested with 3.12)
+## Project Structure
 
-Create a virtual environment and install dependencies.
-
-Windows (PowerShell):
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -U pip
-pip install -r requirements.txt
+```
+program-python-library-management/
+├── library_management/
+│   ├── main.py           # CLI entry point with argparse
+│   ├── qt_app.py         # PyQt6 GUI application
+│   ├── db.py             # Database layer (SQLite CRUD)
+│   └── errors.py         # Custom exceptions
+├── "library management.py"   # Alternate entry script
+├── img/                  # Screenshots
+├── requirements.txt
+└── pyrightconfig.json
 ```
 
-macOS / Linux:
+## Setup
 
 ```bash
-python -m venv .venv
-. .venv/bin/activate
-python -m pip install -U pip
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-```
-
-Start the app:
-
-```bash
 python "library management.py"
 ```
 
-Default database file is created at `./library.db`.
-
-Optional: choose a database path:
+Optional custom database path:
 
 ```bash
 python "library management.py" --db ./data/library.db
 ```
 
-## CSV Import/Export
+## Dependencies
 
-- Books CSV columns: `title,author,isbn`
-- Users CSV columns: `name`
-
+- `PyQt6>=6.6`
